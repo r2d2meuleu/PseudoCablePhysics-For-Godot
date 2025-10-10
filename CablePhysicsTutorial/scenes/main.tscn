@@ -1,11 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://ddqo17pfv6xjt"]
+[gd_scene load_steps=14 format=3 uid="uid://ddqo17pfv6xjt"]
 
 [ext_resource type="Texture2D" uid="uid://dbl4a0tvdw7pl" path="res://textures/placeholders/DarkPrototypeTexture.png" id="1_edrna"]
 [ext_resource type="PackedScene" uid="uid://cssglj6choju3" path="res://scenes/player.tscn" id="2_n8x4n"]
 [ext_resource type="PackedScene" uid="uid://dpnia7pnlgqet" path="res://scenes/psuedo_physics_cable.tscn" id="2_nc41p"]
 [ext_resource type="PackedScene" uid="uid://mdsdgeynk147" path="res://scenes/cable_terminal.tscn" id="3_p56pu"]
+[ext_resource type="PackedScene" uid="uid://7fbmk1lqs0gp" path="res://scenes/mesh_instance_3d.tscn" id="4_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://dtci3471vxmbj" path="res://scenes/psuedo_physics_cable_double.tscn" id="5_1lv8e"]
-[ext_resource type="Script" path="res://scripts/psuedo_physics_cable.gd" id="6_7t30t"]
+[ext_resource type="Script" uid="uid://dxbcfhaesyqhy" path="res://scripts/psuedo_physics_cable.gd" id="6_7t30t"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yg1ph"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -54,14 +55,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -18)
 cable_length = 5.0
 cable_gravity_amp = 1.0
+cable_mesh = ExtResource("4_o6xl0")
 
 [node name="StationaryCable" parent="." node_paths=PackedStringArray("start_point", "end_point") instance=ExtResource("2_nc41p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 start_point = NodePath("Pillar/Pillar3")
 end_point = NodePath("Pillar/Pillar2/Pillar4")
-end_is_rigidbody = false
 cable_length = 8.0
 cable_gravity_amp = 3.0
+cable_mesh = ExtResource("4_o6xl0")
 
 [node name="Pillar" type="CSGBox3D" parent="StationaryCable"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -27)
@@ -94,6 +96,7 @@ end_point = NodePath("HangingCable/RigidBody3D")
 cable_length = 8.0
 cable_gravity_amp = 1.0
 cable_springiness = 40.0
+cable_mesh = ExtResource("4_o6xl0")
 
 [node name="HangingCable" type="CSGBox3D" parent="HangingCable"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, -17)
@@ -170,3 +173,4 @@ end_point = NodePath("../RigidBody3D")
 number_of_segments = 7
 cable_length = 10.0
 cable_gravity_amp = 1.0
+cable_mesh = ExtResource("4_o6xl0")
